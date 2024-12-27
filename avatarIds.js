@@ -38,9 +38,29 @@ async function main() {
   }
   progressDialog.close();
 
+  const pcAvatars = avatars.filter((avatar) =>
+    avatar.unityPackages.some(
+      (package) =>
+        package.platform === "standalonewindows" &&
+        package.variant !== "impostor",
+    ),
+  );
+  const androidAvatars = avatars.filter((avatar) =>
+    avatar.unityPackages.some(
+      (package) =>
+        package.platform === "android" && package.variant !== "impostor",
+    ),
+  );
+
   const avatarIdsText = avatars
-    .map((avatar) => `${avatar.name} ${avatar.id}\n`)
-    .join("");
+    .map((avatar) => `${avatar.name} ${avatar.id}`)
+    .join("\n");
+  const pcAvatarIdsText = pcAvatars
+    .map((avatar) => `${avatar.name} ${avatar.id}`)
+    .join("\n");
+  const androidAvatarIdsText = androidAvatars
+    .map((avatar) => `${avatar.name} ${avatar.id}`)
+    .join("\n");
 
   const resultDialog = document.createElement("dialog");
   {
@@ -51,15 +71,29 @@ async function main() {
         resultText.value = avatarIdsText;
         resultDialog.appendChild(resultText);
         */
+    resultDialog.style.display = "flex";
+    resultDialog.style.flexDirection = "column";
     const resultText = document.createElement("p");
-    resultText.textContent = `${avatars.length} Avatar IDs`;
+    resultText.textContent = `Copy Avatar IDs`;
     resultDialog.appendChild(resultText);
     const copyButton = document.createElement("button");
-    copyButton.textContent = "Copy";
+    copyButton.textContent = `Copy all avatars (${avatars.length})`;
     copyButton.addEventListener("click", async () => {
       await navigator.clipboard.writeText(avatarIdsText);
     });
     resultDialog.appendChild(copyButton);
+    const pcCopyButton = document.createElement("button");
+    pcCopyButton.textContent = `Copy only PC avatars (${pcAvatars.length})`;
+    pcCopyButton.addEventListener("click", async () => {
+      await navigator.clipboard.writeText(pcAvatarIdsText);
+    });
+    resultDialog.appendChild(pcCopyButton);
+    const androidCopyButton = document.createElement("button");
+    androidCopyButton.textContent = `Copy only Android avatars (${androidAvatars.length})`;
+    androidCopyButton.addEventListener("click", async () => {
+      await navigator.clipboard.writeText(androidAvatarIdsText);
+    });
+    resultDialog.appendChild(androidCopyButton);
     const closeButton = document.createElement("button");
     closeButton.textContent = "Close";
     closeButton.addEventListener("click", () => resultDialog.close());
