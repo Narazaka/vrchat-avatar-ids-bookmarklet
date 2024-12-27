@@ -1,22 +1,27 @@
 <!doctype html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VRChat Avatar Ids bookmarklet</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <h1>VRChat Avatar Ids bookmarklet</h1>
-    <p><a href="javascript:">VRChat Avatar Ids bookmarklet</a></p>
+    <p><button><a href="javascript:">VRChat Avatar Ids bookmarklet</a></button></p>
     <p>
-      Drag the link above to your bookmark bar or use the ☆ button to bookmark
-      it, then log in to VRChat Home and run the bookmark to copy the list of
-      IDs.
+        Drag the link above to your bookmark bar or use the ☆ button to bookmark
+        it, then log in to VRChat Home and run the bookmark to copy the list of
+        IDs.
     </p>
     <p>
-      上のリンクをブックマークバーにドラッグするか、☆ボタンなどでブックマークして下さい。VRChat
-      Homeにログインしてからそのブックマークを実行するとID一覧がコピーできます。
+        上のリンクをブックマークバーにドラッグするか、☆ボタンなどでブックマークして下さい。VRChat
+        Homeにログインしてからそのブックマークを実行するとID一覧がコピーできます。
     </p>
-  </body>
+    <script>
+        window.history.replaceState(null, null, "javascript:");
+    </script>
+</body>
+
 </html>
