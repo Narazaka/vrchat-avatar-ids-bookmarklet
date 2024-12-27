@@ -1,0 +1,16 @@
+{
+  "name": "vrchat-avatar-ids",
+  "version": "1.0.0",
+  "main": "avatarIds.js",
+  "scripts": {
+    "build": "node build/build.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Zlib",
+  "description": "",
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "terser": "^5.37.0"
+  }
+}
